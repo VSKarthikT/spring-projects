@@ -6,13 +6,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karthik.myfancypdfinvoices.model.Invoice;
-import com.karthik.myfancypdfinvoices.service.InvoiceService;
+import com.karthik.myfancypdfinvoices.context.Application;
 
 public class MyFancyPdfInvoicesServlet extends HttpServlet {
-  private InvoiceService invoiceService = new InvoiceService();
-  private ObjectMapper objectMapper = new ObjectMapper();
+  // private InvoiceService invoiceService = new InvoiceService();
+  // private ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -28,8 +27,8 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
               "</html>");
     } else if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
       response.setContentType("application/json; charset=UTF-8");
-      List<Invoice> invoices = invoiceService.findAll();
-      response.getWriter().print(objectMapper.writeValueAsString(invoices));
+      List<Invoice> invoices = Application.invoiceService.findAll();
+      response.getWriter().print(Application.objectMapper.writeValueAsString(invoices));
     }
   }
 
@@ -38,9 +37,9 @@ public class MyFancyPdfInvoicesServlet extends HttpServlet {
     if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
       String userId = request.getParameter("user_id");
       Integer amount = Integer.valueOf(request.getParameter("amount"));
-      Invoice invoice = invoiceService.create(userId, amount);
+      Invoice invoice = Application.invoiceService.create(userId, amount);
       response.setContentType("application/json; charset=UTF-8");
-      String json = objectMapper.writeValueAsString(invoice);
+      String json = Application.objectMapper.writeValueAsString(invoice);
       response.getWriter().println(json);
     } else {
       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
