@@ -1,4 +1,8 @@
-com/karthik/myfancypdfinvoices/service/InvoiceService.class
+com/karthik/myfancypdfinvoices/model/User.class
+com/karthik/myfancypdfinvoices/context/MyFancyPdfInvoicesApplicationConfiguration.class
 com/karthik/myfancypdfinvoices/model/Invoice.class
+com/karthik/myfancypdfinvoices/service/UserService.class
 com/karthik/ApplicationLauncher.class
 com/karthik/myfancypdfinvoices/web/MyFancyPdfInvoicesServlet.class
+com/karthik/myfancypdfinvoices/service/InvoiceService.class
+com/karthik/myfancypdfinvoices/context/Application.class
