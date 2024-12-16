@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.stereotype.Component;
+
 import com.karthik.simplebank.model.User;
 
+@Component
 public class UserService {
 
   List<User> users = new CopyOnWriteArrayList<>();
