@@ -15,6 +15,8 @@ import jakarta.annotation.PreDestroy;
 
 @Component
 public class InvoiceService {
+  @Value("${cdn.url}")
+  String cdnUrl;
   // @PostConstruct
   // public void init() {
   // System.out.println("just after bean created do something");
@@ -31,14 +33,12 @@ public class InvoiceService {
   // Field injection
   // @Autowired
   private final UserService userService;
-  private final String cdnUrl;
   // We can comment out below injection when we are using autowired annotation
   // because spring knows where this needs to injected
 
   // For reading properties file
-  public InvoiceService(UserService userService, @Value("${cdn.url}") String cdnUrl) {
+  public InvoiceService(UserService userService) {
     this.userService = userService;
-    this.cdnUrl = cdnUrl;
   }
 
   public List<Invoice> findAll() {
