@@ -1,0 +1,7 @@
+GET http://localhost:8080/
+
+GET http://localhost:8080/get_transactions
+
+GET http://localhost:8080/get_users
+
+POST http://localhost:8080/transactionadd?userId=karthik&amount=35.6
