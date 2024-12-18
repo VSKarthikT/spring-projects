@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karthik.ApplicationLauncher;
@@ -17,15 +19,16 @@ import com.karthik.myfancypdfinvoices.service.UserService;
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
 @PropertySource("classpath:/application.properties")
-public class MyFancyPdfInvoicesApplicationConfiguration {
+@EnableWebMvc
+public class ApplicationConfiguration {
 
   // @Bean
   // @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
   // SCOPE IS USED TO KNOW HOW OBJECTS ARE CREATED LIKE SINGELTON / PROTOYPE OR
   // VARIOUS SCOPES IN SRPING DOCUMENTATION
-  public UserService userService() {
-    return new UserService();
-  }
+  // public UserService userService() {
+  // return new UserService();
+  // }
 
   // !!!! This bean will automatically inject userservice bean above to below
   // service bean
@@ -60,8 +63,14 @@ public class MyFancyPdfInvoicesApplicationConfiguration {
   // invoiceService.setUserService(userService);
   // return invoiceService;
   // }
-  public InvoiceService invoiceService(UserService userService) {
-    return new InvoiceService(userService);
+  // public InvoiceService invoiceService(UserService userService) {
+  // return new InvoiceService(userService);
+  // }
+
+  // If we are usign @requestparams we can do like below to check if valid or not
+  @Bean
+  public MethodValidationPostProcessor methodValidationPostProcessor() {
+    return new MethodValidationPostProcessor();
   }
 
   @Bean

@@ -2,3 +2,14 @@ GET http://localhost:8080
 GET http://localhost:8080/invoices
 
 POST http://localhost:8080/invoices?user_id=karthik&amount=100
+
+POST http://localhost:8080/invoices
+Accept: application/json
+Content-Type: application/json
+
+{   "amount": 5000,   "user_id": "someId" }
+
+POST http://localhost:8080/invoices
+Content-Type: application/x-www-form-urlencoded
+
+user_id=&amount=5
